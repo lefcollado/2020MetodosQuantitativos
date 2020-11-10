@@ -1,0 +1,161 @@
+---
+title: "Métodos Quantitativos para Avaliação de Políticas Públicas"
+subtitle: "Trabalho 1"
+author: "Letícia Figueiredo Collado (10560067) e Marcelo Nakamura Saito (10686860)"
+date: "09/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+### Exercício 1
+
+```{r}
+
+load("C:/Users/lefco/Documents/EACH/Métodos Quantitativos/wooldridge (arquivos ajustados pt-br)/hprice1.RData")
+
+modelo.1 <- lm(preco ~ aconst + qtdorm + tamterr, data = dados.hprice1)
+summary(modelo.1)
+
+```
+
+**(i) Reporte os resultados na forma de uma equação. Qual é o aumento estimado no preço para cada dormitório a mais, mantendo constante a área construída e o tamanho do terreno?**
+
+$$preco = - 21.770308 + 0.122778 aconst + 13.852522 qtdorm + 0.002068 tamterr$$
+
+O aumento estimado no preço para cada dormitório a mais, mantendo constantes a área construída e o tamanho do terreno, é de **13.852522 mil dólares**, ou seja:
+
+$$ \Delta preco = 13.852522 \Delta qtdorm $$
+
+**(ii) Considere duas casas tais que uma tem um quarto a mais, além de 100 $m^2$ a mais de área construída do que a outra. Qual deve ser a diferença (estimada) de preço entre elas?**
+
+```{r}
+
+preco.1 <- (0.122778 * 100) + 13.852522
+preco.1
+
+```
+
+A diferença estimada de preço entre duas casas, tais que uma tem um quarto a mais e 100m^2 a mais de área construída, é de **26.13032 mil dólares**.
+
+**(iii) Qual percentagem da variação no preço é explicada pelo modelo? Justifique sua resposta e interprete o resultado.**
+
+67.24% da variação no preço da residência é explicado pelo modelo estimado. A área construída, quantidade de dormitórios e tamanho do terreno são variáveis bastante relevantes para explicar a variação no preço da casa. Apesar disso, podem fazer parte do termo de erro outras variáveis que poderiam afetar a variável resposta, como a quantidade de vagas de carro, o tamanho (ou existência) do quintal, a distância até o centro da cidade, a distância até equipamentos públicos de educação, saúde, transporte, etc, o nível de ruído nos arredores, oferta de infraestrutura no bairro, entre outros elementos.
+
+**(iv) A primeira casa na amostra tem $aconst = 2438$ e $qtdorm = 4$. Ache o preço de venda previsto para essa casa a partir da reta de regressão de MQO.**
+
+$$preco = - 21.770308 + 0.122778 aconst + 13.852522 qtdorm + 0.002068 tamterr$$
+
+$$preco = - 21.770308 + 0.122778 * 2438 + 13.852522 * 4 + 0.002068 * 6126$$
+
+```{r}
+
+preco.2 <- - 21.770308 + 0.122778 * 2438 + 13.852522 * 4 + 0.002068 * 6126
+preco.2
+
+```
+
+??? manter o tamanho do terreno que está no dataframe?
+
+**(v) O preço de venda real da primeira casa na amostra foi de 300.000 $(preco = 300)$. Ache o resíduo $(\hat{u}_i = y_i − \hat{y}_i)$ para essa casa. Isso sugere que o comprador pagou por ela mais ou menos do que o previsto pelo modelo? Por quê?**
+
+```{r}
+
+res.1 <- 300 - 345.6411
+res.1
+
+```
+
+Isso sugere que o comprador pagou menos do que o previsto no modelo, uma vez que o resíduo diz respeito à diferença entre o valor observado e o valor previsto.
+
+### Exercício 2
+
+**(i) Estime um modelo que relacione o salário anual às vendas da firma e ao seu valor de mercado. Faça um modelo de elasticidade constante para ambas as variáveis independentes, isto é:**
+
+$$log(salario) = \beta_{0} + \beta_{1} log(vendas) + \beta_{2} log(valmerc) + u $$
+
+**Escreva os resultados na forma de uma equação. Interprete os resultados (sobretudo os coeficientes estimados). Observe que nesse modelo, a interpretação de β1, mantido tudo o mais constante é:**
+
+$$ \% \Delta salario = \beta_{1} \% \Delta vendas $$
+
+**A interpretação de $\beta_{2}$ é análoga.**
+
+```{r}
+
+load("C:/Users/lefco/Documents/EACH/Métodos Quantitativos/wooldridge (arquivos ajustados pt-br)/ceosal2.RData")
+
+modelo.2 <- lm(lsalario ~ lvendas + lvalmerc, data = dados.ceosal2)
+summary(modelo.2)
+
+```
+
+$$log(salario) = 4.6209 + 0.1621 log(vendas) + 0.1067 log(valmerc) $$
+
+A partir do modelo estimado, podemos apontar que:
+
+* $\beta_{0} = 4.6209$ deveria corresponder ao valor estimado do salário anual caso o valor das vendas e o valor de mercado da firma sejam simultaneamente iguais a zero.
+
+<!-- complementar! parece muito improvável o valor de vendas e o valor de mercado chegarem a zero... falência? -->
+
+* $\beta_{1} = 0.1621$ indica, caso o valor de mercado permaneça o mesmo (ceteris paribus), que o aumento de $1 nas vendas da firma resulta em um aumento de 16.21% do salário anual, o que pode ser interpretado como:
+
+$$ \% \Delta salario = 16.21\% \Delta vendas $$
+
+* $\beta_{2} = 0.1067$ indica, caso o valor das vendas  permaneça o mesmo (ceteris paribus), que o aumento de $1 no valor de mercado da firma resulta em um aumento de 10.67% do salário anual, o que pode ser interpretado como:
+
+$$ \% \Delta salario = 10.67\% \Delta valmercado $$
+
+**(ii) Acrescente as variáveis lucros, 1990, em $ milhões ($lucros$), anos como ceo da firma ($permceo$) e idade ($idade$) ao modelo da parte (i). A partir desse modelo, qual é o retorno percentual estimado para um ano a mais da permanência do CEO no emprego, mantendo fixos os outros fatores?**
+
+**Observe que há uma sutileza nessa nessa pergunta: quando a permanência aumenta um ano, não é possível manter idade constante, pois ela simultaneamente deve aumentar um ano.**
+
+```{r}
+
+modelo.3 <- lm(lsalario ~ lvendas + lvalmerc + lucros + permceo + idade, data = dados.ceosal2)
+modelo.3
+summary(modelo.3)
+
+```
+
+$$ log(salario) = 4.778 + 0.1685 log(vendas) + 0.1012 log(valmerc) + 0.00002937 lucros + 0.01369 permceo + 0.004924 idade $$
+
+Visto que o aumento da permanência em 1 ano também significa o aumento da idade em 1 ano, podemos interpretar este aumento, mantendo os outros fatores fixos, como:
+
+$$ \% \Delta salario = \beta_{4} \Delta permceo + \beta_{5} \Delta idade $$
+
+Portanto:
+
+```{r}
+
+salario.1 <- 0.01369 + 0.004924
+salario.1
+
+```
+
+Ou seja, um aumento de permanência e idade em 1 ano resultaria em um aumento de 0.018614% no salário anual.
+
+**(iii) Quanto da variabilidade de log(salario) é explicada pelo modelo ajustado no item (ii)? E pelo modelo ajustado no item (i)? Compare.**
+
+No caso do item (i), 29.91% da variabilidade de log(salario) é explicada pelo modelo ajustado, enquanto no item (ii) esse valor corresponde a 32.22%. O aumento pode ser justificado pelo fato de que outras variáveis relevantes para estimar o salário anual foram introduzidas no item (ii).
+
+**(iv) Que outras variáveis que potencialmente afetam a variável resposta estão incluídas no termo de erro? Faça uma lista e indique quais delas podem causar endogeneidade. Justifique.**
+
+Escolaridade
+Lucros
+
+**(v) Encontre o coeficiente de correlação amostral entre as variáveis log(valmerc) e lucros. Reporte**
+
+```{r}
+
+cor(dados.ceosal2$lvalmerc, dados.ceosal2$lucros)
+
+```
+
+
+**O que o valor dessa correlação diz sobre o potencial viés dos estimadores de MQO do coeficiente associado a $log(valmerc)$ quando da omissão da variável $lucros$?**
+
+O coeficiente de correlação entre $log(valmerc)$ e $lucros$ é igual a 0.777, um valor muito significativo e que indica haver viés na estimativa de $\beta_{2}$ causado pela omissão da variável $lucros$. 
+
