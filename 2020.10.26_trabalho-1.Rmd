@@ -97,7 +97,7 @@ $$log(salario) = 4.6209 + 0.1621 log(vendas) + 0.1067 log(valmerc) $$
 
 A partir do modelo estimado, podemos apontar que:
 
-* $\beta_{0} = 4.6209$ deveria corresponder ao valor estimado do salário anual caso o valor das vendas e o valor de mercado da firma sejam simultaneamente iguais a zero.
+* $\beta_{0} = 4.6209$ corresponderia ao valor estimado do salário quando as vendas e o valor de mercado da firma forem simultaneamente iguais a zero ($ 4,6 mil). Esse valor, entretanto, deve ser interpretado com cuidado, uma vez que dificilmente uma firma se encontraria em uma situação de vendas e valor de mercado zerados - neste cenário, a empresa poderia estar em falência ou próxima disso.
 
 * $\beta_{1} = 0.1621$ indica, caso o valor de mercado permaneça o mesmo (ceteris paribus), que o aumento de 1% nas vendas da firma resulta em um aumento de 0.1621% do salário anual, o que pode ser interpretado como:
 
