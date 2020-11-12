@@ -141,7 +141,7 @@ No caso do item (i), 29.91% da variabilidade de log(salario) é explicada pelo m
 
 **(iv) Que outras variáveis que potencialmente afetam a variável resposta estão incluídas no termo de erro? Faça uma lista e indique quais delas podem causar endogeneidade. Justifique.**
 
-Outras variáveis que potencialmente afetam a variável resposta são: nível de escolaridade, desempenho escolar, raça, gênero, vocação, habilidades técnicas, habilidades sociais, criatividade, lucros da empresa, área de atuação, porte e localização da empresa, PIB do país. Fatores individuais inatos como raça, gênero e idade, estão intimamente relacionados com variáveis como nível de escolaridade, desempenho escolar e desenvolvimento de habilidades técnicas e sociais e criatividade. Além disso, as características de localização, porte e área de atuação da empresa, por exemplo, tem ligação com seu valor de mercado, vendas anuais e lucros.
+Outras variáveis que potencialmente afetam a variável resposta são: nível de escolaridade, desempenho escolar, raça, gênero, vocação, habilidades técnicas, habilidades sociais, criatividade, lucros da empresa, área de atuação, porte e localização da empresa, PIB do país. Fatores individuais como raça, gênero, desempenho escolar, etc, estão intimamente relacionados com o tempo de permanência no cargo, assim como nível de escolaridade e habilidades, podem estar relacionadas à idade. Além disso, as características de localização, porte e área de atuação da empresa, por exemplo, tem ligação com seu valor de mercado e vendas anuais.
 
 **(v) Encontre o coeficiente de correlação amostral entre as variáveis log(valmerc) e lucros. Reporte**
 
