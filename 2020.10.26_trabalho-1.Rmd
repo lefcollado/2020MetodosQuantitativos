@@ -154,5 +154,4 @@ cor(dados.ceosal2$lvalmerc, dados.ceosal2$lucros)
 
 **O que o valor dessa correlação diz sobre o potencial viés dos estimadores de MQO do coeficiente associado a $log(valmerc)$ quando da omissão da variável $lucros$?**
 
-O coeficiente de correlação entre $log(valmerc)$ e $lucros$ é igual a 0.777, um valor muito significativo e que indica haver viés na estimativa de $\beta_{2}$ causado pela omissão da variável $lucros$. 
-
+O coeficiente de correlação entre $log(valmerc)$ e $lucros$ é igual a 0.777, um valor muito significativo e que indica haver viés na estimativa de $\beta_{2}$ causado pela omissão da variável $lucros$.
